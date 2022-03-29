@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+include /usr/share/dpkg/default.mk
+
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+VERSION ?= $(shell dpkg-parsechangelog | sed -rne 's/^Version: ([0-9.]+).*$$/\1/p')
+
+%:
+	dh $@ --with dkms
+
+
+override_dh_auto_install:
+	dh_install -pbackport-wifi-dkms    backport-include/      usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    compat/                usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    defconfigs/            usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    dkms.conf              usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Documentation/         usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    drivers/               usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    include/               usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    kconf/                 usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Kconfig                usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Kconfig.kernel         usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Kconfig.local          usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Kconfig.package.hacks  usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Kconfig.sources        usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Kconfig.versions       usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    LICENSES/              usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    local-symbols          usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    MAINTAINERS            usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Makefile               usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Makefile.build         usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Makefile.kernel        usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    Makefile.real          usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    net/                   usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    scripts/               usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    versions               usr/src/backport-wifi-$(VERSION)
+	dh_install -pbackport-wifi-dkms    .config                usr/src/backport-wifi-$(VERSION)
+         
+
+override_dh_dkms:
+	dh_dkms -V
+
+override_dh_auto_build:
+	:		
+override_dh_auto_clean:
+	:	

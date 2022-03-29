@@ -1,0 +1,5 @@
+backport-wifi-dkms (1.0.0) unstable; urgency=medium
+
+  * Backport wifi from kernel v5.15 
+
+ -- Hao Chen <chenhaoa@uniontech.com>  Tue, 29 Mar 2022 14:57:12 +0800
