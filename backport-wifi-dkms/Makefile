@@ -27,7 +27,7 @@ export KLIB KLIB_BUILD BACKPORT_DIR KMODDIR KMODPATH_ARG
 
 .PHONY: default
 default:
-	make allmodconfig
+	make defconfig-dkms
 	@$(MAKE) modules
 
 .PHONY: mrproper
