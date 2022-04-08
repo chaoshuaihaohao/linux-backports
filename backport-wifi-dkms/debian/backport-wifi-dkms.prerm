@@ -13,7 +13,7 @@ DRV_NAME=backport-wifi
 DRV_VERSION=1.0.0
 KERNEL_VERSION=`uname -r`
 
-dkms remove ${DRV_NAME}/${DRV_VERSION}
+dkms remove ${DRV_NAME}/${DRV_VERSION} --all
 rm -rf /lib/modules/${KERNEL_VERSION}/updates/compat
 rm -rf /lib/modules/${KERNEL_VERSION}/updates/net
 rm -rf /lib/modules/${KERNEL_VERSION}/updates/drivers
