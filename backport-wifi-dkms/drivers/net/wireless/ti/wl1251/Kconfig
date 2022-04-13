@@ -25,10 +25,11 @@ config WL1251_SPI
 	  Say N if unsure.
 
 config WL1251_SDIO
-	depends on CONFIG_WILINK_PLATFORM_DATA
+#	depends on CONFIG_WILINK_PLATFORM_DATA
 	tristate "TI wl1251 SDIO support"
 	depends on m
-	depends on WL1251 && MMC
+#	depends on WL1251 && MMC
+	depends on WL1251
 	help
 	  This module adds support for the SDIO interface of adapters using
 	  TI wl1251 chipset.  Select this if your platform is using
