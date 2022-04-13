@@ -12,7 +12,7 @@ Vcs-Git: https://github.com
 Homepage: https://github.com/chaoshuaihaohao/linux-backports
 
 Package: backport-wifi-dkms
-Architecture: any
+Architecture: all
 Multi-Arch: foreign
 Depends: flex, bison, libbison-dev, ${misc:Depends},
 Provides: backport-wifi-module
