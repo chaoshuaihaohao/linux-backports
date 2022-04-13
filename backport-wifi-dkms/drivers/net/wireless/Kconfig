@@ -54,7 +54,7 @@ config PCMCIA_RAYCS
 	  called ray_cs.  If unsure, say N.
 
 config PCMCIA_WL3501
-	depends on n
+#	depends on n
 	tristate "Planet WL3501 PCMCIA cards"
 	depends on m
 	depends on CFG80211 && PCMCIA
