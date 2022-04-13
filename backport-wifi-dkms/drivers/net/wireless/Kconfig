@@ -37,7 +37,6 @@ source "drivers/net/wireless/zydas/Kconfig"
 source "drivers/net/wireless/quantenna/Kconfig"
 
 config PCMCIA_RAYCS
-	depends on n
 	tristate "Aviator/Raytheon 2.4GHz wireless support"
 	depends on m
 	depends on PCMCIA
