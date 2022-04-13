@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 config QTNFMAC
-	depends on !KERNEL_5_1
+#	depends on !KERNEL_5_1
 	tristate
 	depends on m
 	depends on QTNFMAC_PCIE
@@ -8,7 +8,7 @@ config QTNFMAC
 	default y if QTNFMAC_PCIE=y
 
 config QTNFMAC_PCIE
-	depends on !KERNEL_5_1
+#	depends on !KERNEL_5_1
 	tristate "Quantenna QSR1000/QSR2000/QSR10g PCIe support"
 	depends on m
 	default n

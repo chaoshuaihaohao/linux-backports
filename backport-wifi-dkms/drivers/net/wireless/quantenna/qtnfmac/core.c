@@ -237,7 +237,9 @@ const struct net_device_ops qtnf_netdev_ops = {
 #endif
 	
 	.ndo_set_mac_address = qtnf_netdev_set_mac_address,
+#if LINUX_VERSION_IS_GEQ(5,1,0)
 	.ndo_get_port_parent_id = qtnf_netdev_port_parent_id,
+#endif
 };
 
 static int qtnf_mac_init_single_band(struct wiphy *wiphy,

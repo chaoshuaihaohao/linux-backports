@@ -104,6 +104,61 @@ static inline int backport_dev_open(struct net_device *dev, struct netlink_ext_a
 #define dev_open LINUX_BACKPORT(dev_open)
 #endif
 
+#if LINUX_VERSION_IS_LESS(5,1,0)
+/**
+ *      dev_get_port_parent_id - Get the device's port parent identifier
+ *      @dev: network device
+ *      @ppid: pointer to a storage for the port's parent identifier
+ *      @recurse: allow/disallow recursion to lower devices
+ *
+ *      Get the devices's port parent identifier
+ */
+#define dev_get_port_parent_id LINUX_BACKPORT(dev_get_port_parent_id)
+static inline int backport_dev_get_port_parent_id(struct net_device *dev,
+                             struct netdev_phys_item_id *ppid,
+                             bool recurse)
+{
+        struct netdev_phys_item_id first = { };
+        struct net_device *lower_dev;
+        struct list_head *iter;
+        int err;
+
+        if (!recurse)
+                return -EOPNOTSUPP;
+
+        netdev_for_each_lower_dev(dev, lower_dev, iter) {
+                err = dev_get_port_parent_id(lower_dev, ppid, recurse);
+                if (err)
+                        break;
+                if (!first.id_len)
+                        first = *ppid;
+                else if (memcmp(&first, ppid, sizeof(*ppid)))
+                        return -EOPNOTSUPP;
+        }
+
+        return err;
+}
+
+/**
+ *      netdev_port_same_parent_id - Indicate if two network devices have
+ *      the same port parent identifier
+ *      @a: first network device
+ *      @b: second network device
+ */
+static inline bool backport_netdev_port_same_parent_id(struct net_device *a, struct net_device *b)
+{
+        struct netdev_phys_item_id a_id = { };
+        struct netdev_phys_item_id b_id = { };
+
+        if (dev_get_port_parent_id(a, &a_id, true) ||
+            dev_get_port_parent_id(b, &b_id, true))
+                return false;
+
+        return netdev_phys_item_id_same(&a_id, &b_id);
+}
+#define netdev_port_same_parent_id LINUX_BACKPORT(netdev_port_same_parent_id)
+#endif
+
 #if LINUX_VERSION_IS_LESS(5,10,0)
 #define dev_fetch_sw_netstats LINUX_BACKPORT(dev_fetch_sw_netstats)
 void dev_fetch_sw_netstats(struct rtnl_link_stats64 *s,
