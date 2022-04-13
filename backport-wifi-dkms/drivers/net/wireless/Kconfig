@@ -111,7 +111,7 @@ config USB_NET_RNDIS_WLAN
 	  If you choose to build a module, it'll be called rndis_wlan.
 
 config VIRT_WIFI
-	depends on n
+#	depends on n
 	tristate "Wifi wrapper for ethernet drivers"
 	depends on m
 	depends on CFG80211
