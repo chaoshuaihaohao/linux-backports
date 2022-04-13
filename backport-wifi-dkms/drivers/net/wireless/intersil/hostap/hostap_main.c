@@ -761,7 +761,11 @@ static void hostap_set_multicast_list(struct net_device *dev)
 }
 
 
+#if LINUX_VERSION_IS_GEQ(5,15,1)
 static void prism2_tx_timeout(struct net_device *dev, unsigned int txqueue)
+#else
+static void prism2_tx_timeout(struct net_device *dev)
+#endif
 {
 	struct hostap_interface *iface;
 	local_info_t *local;
@@ -797,7 +801,9 @@ static const struct net_device_ops hostap_netdev_ops = {
 	.ndo_open		= prism2_open,
 	.ndo_stop		= prism2_close,
 	.ndo_do_ioctl		= hostap_ioctl,
+#if LINUX_VERSION_IS_GEQ(5,15,1)
 	.ndo_siocdevprivate	= hostap_siocdevprivate,
+#endif
 	.ndo_set_mac_address	= prism2_set_mac_address,
 	.ndo_set_rx_mode	= hostap_set_multicast_list,
 	.ndo_tx_timeout 	= prism2_tx_timeout,
@@ -810,7 +816,9 @@ static const struct net_device_ops hostap_mgmt_netdev_ops = {
 	.ndo_open		= prism2_open,
 	.ndo_stop		= prism2_close,
 	.ndo_do_ioctl		= hostap_ioctl,
+#if LINUX_VERSION_IS_GEQ(5,15,1)
 	.ndo_siocdevprivate	= hostap_siocdevprivate,
+#endif
 	.ndo_set_mac_address	= prism2_set_mac_address,
 	.ndo_set_rx_mode	= hostap_set_multicast_list,
 	.ndo_tx_timeout 	= prism2_tx_timeout,
@@ -823,7 +831,9 @@ static const struct net_device_ops hostap_master_ops = {
 	.ndo_open		= prism2_open,
 	.ndo_stop		= prism2_close,
 	.ndo_do_ioctl		= hostap_ioctl,
+#if LINUX_VERSION_IS_GEQ(5,15,1)
 	.ndo_siocdevprivate	= hostap_siocdevprivate,
+#endif
 	.ndo_set_mac_address	= prism2_set_mac_address,
 	.ndo_set_rx_mode	= hostap_set_multicast_list,
 	.ndo_tx_timeout 	= prism2_tx_timeout,
