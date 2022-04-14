@@ -22,11 +22,9 @@ override_dh_auto_install:
 	dh_install -pbackport-wifi-dkms    include/               usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    kconf/                 usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    Kconfig                usr/src/backport-wifi-$(VERSION)
-	dh_install -pbackport-wifi-dkms    Kconfig.kernel         usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    Kconfig.local          usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    Kconfig.package.hacks  usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    Kconfig.sources        usr/src/backport-wifi-$(VERSION)
-	dh_install -pbackport-wifi-dkms    Kconfig.versions       usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    LICENSES/              usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    local-symbols          usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    MAINTAINERS            usr/src/backport-wifi-$(VERSION)
@@ -37,7 +35,6 @@ override_dh_auto_install:
 	dh_install -pbackport-wifi-dkms    net/                   usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    scripts/               usr/src/backport-wifi-$(VERSION)
 	dh_install -pbackport-wifi-dkms    versions               usr/src/backport-wifi-$(VERSION)
-	dh_install -pbackport-wifi-dkms    .config                usr/src/backport-wifi-$(VERSION)
          
 
 override_dh_dkms:
@@ -47,3 +44,5 @@ override_dh_auto_build:
 	:		
 override_dh_auto_clean:
 	:	
+override_dh_auto_test:
+	:
