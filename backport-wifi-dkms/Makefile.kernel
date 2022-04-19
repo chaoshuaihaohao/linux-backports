@@ -48,3 +48,4 @@ obj-$(CPTCFG_USB_WDM) += drivers/usb/class/
 obj-$(CPTCFG_USB_USBNET) += drivers/net/usb/
 
 obj-$(CPTCFG_STAGING) += drivers/staging/
+obj-$(CPTCFG_MHI_BUS) += drivers/bus/mhi/

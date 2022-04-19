@@ -13,3 +13,4 @@ source "$BACKPORT_DIR/drivers/bcma/Kconfig"
 source "$BACKPORT_DIR/drivers/usb/class/Kconfig"
 
 source "$BACKPORT_DIR/drivers/staging/Kconfig"
+source "$BACKPORT_DIR/drivers/bus/Kconfig"
